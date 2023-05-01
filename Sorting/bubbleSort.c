@@ -10,16 +10,27 @@ void swap(int* a, int* b) {
     *a=*b;
     *b=temp;
 }
-void selectSort(int* arr, int len) {
-    int min;
+void bubbleSort(int* arr, int len) {
     for (int i=0; i<len-1; ++i) {
-        min = i;
-        for (int j=i+1; j<len; ++j) {
-            if (arr[j]<arr[min]) {
-                min = j;
+        for (int j=0; j<len-1-i; ++j) {
+            if (arr[j]>arr[j+1]) {
+                swap(&(arr[j]),&(arr[j+1]));
             }
         }
-        swap(&(arr[i]),&(arr[min]));
+    }
+}
+void bubbleSortImproved(int* arr, int len) {
+    for (int i=0; i<len-1; ++i) {
+        int anyswaps=0;
+        for (int j=0; j<len-1-i; ++j) {
+            if (arr[j]>arr[j+1]) {
+                swap(&(arr[j]),&(arr[j+1]));
+                anyswaps=1;
+            }
+        }
+        if (!anyswaps) {
+            return;
+        }
     }
 }
 int main() {
@@ -30,7 +41,7 @@ int main() {
     for (int i=0; i<n; ++i) {
         scanf("%d",&(arr[i]));
     }
-    selectSort(arr,n);
+    bubbleSort(arr,n);
     printArr(arr,n);
     printf("\n");
     return 0;
