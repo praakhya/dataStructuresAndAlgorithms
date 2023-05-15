@@ -8,6 +8,15 @@ void printArr(int* arr, int len)
     }
     printf("]");
 }
+void printArrSect(int* arr, int l, int r)
+{
+    printf("[");
+    for (int i=l; i<=r; ++i)
+    {
+        printf("%d ",arr[i]);
+    }
+    printf("]");
+}
 void printMat(int** mat, int r, int c)
 {
     printf("[");

@@ -22,6 +22,20 @@ void selectSort(int* arr, int len) {
         swap(&(arr[i]),&(arr[min]));
     }
 }
+void selectSortRec(int* arr, int l, int r) {
+    if (l>=r) {
+        return;
+    }
+    int min = l;
+    for (int j=l+1; j<=r; ++j) {
+        if (arr[j]<arr[min]) {
+            min = j;
+        }
+    }
+    swap(&(arr[l]),&(arr[min]));
+    selectSortRec(arr,l+1,r);
+}
+
 int main() {
     int arr[maxLen], n;
     printf("Count of numbers: ");
@@ -30,7 +44,7 @@ int main() {
     for (int i=0; i<n; ++i) {
         scanf("%d",&(arr[i]));
     }
-    selectSort(arr,n);
+    selectSortRec(arr,0,n-1);
     printArr(arr,n);
     printf("\n");
     return 0;

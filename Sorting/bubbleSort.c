@@ -33,6 +33,24 @@ void bubbleSortImproved(int* arr, int len) {
         }
     }
 }
+void bubbleSortRec(int* arr, int len) {
+    if (len<=1) {
+        return;
+    }
+    int anyswaps=0;
+    for (int j=0; j<len-1; ++j) {
+        if (arr[j]>arr[j+1]) {
+            swap(&(arr[j]),&(arr[j+1]));
+            anyswaps=1;
+        }
+    }
+    if (!anyswaps) {
+        return;
+    }
+    else {
+        bubbleSort(arr,len-1);
+    }
+}
 int main() {
     int arr[maxLen], n;
     printf("Count of numbers: ");
@@ -41,7 +59,7 @@ int main() {
     for (int i=0; i<n; ++i) {
         scanf("%d",&(arr[i]));
     }
-    bubbleSort(arr,n);
+    bubbleSortRec(arr,n);
     printArr(arr,n);
     printf("\n");
     return 0;
